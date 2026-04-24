@@ -1,0 +1,133 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "site_settings"
+    label: "⚙️ Site Settings"
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "_data/settings.json"
+        fields:
+          - { label: "Site Name", name: "site_name", widget: "string", default: "Tadaaiki Foundation" }
+          - { label: "Tagline", name: "tagline", widget: "string", default: "Empowering Women, Children & Youth" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "Twitter/X URL", name: "twitter", widget: "string", required: false }
+          - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+
+  - name: "hero"
+    label: "🏠 Hero Section"
+    files:
+      - label: "Hero Content"
+        name: "hero"
+        file: "_data/hero.json"
+        fields:
+          - { label: "Eyebrow Text", name: "eyebrow", widget: "string", default: "Registered NGO · Ghana" }
+          - { label: "Main Heading Line 1", name: "heading1", widget: "string", default: "Empowering" }
+          - { label: "Main Heading Line 2 (italic/blue)", name: "heading2", widget: "string", default: "Women," }
+          - { label: "Main Heading Line 3", name: "heading3", widget: "string", default: "Children" }
+          - { label: "Main Heading Line 4", name: "heading4", widget: "string", default: "& Youth" }
+          - { label: "Description", name: "description", widget: "text", default: "Tadaaiki Foundation provides skills, resources, and opportunities that transform lives across Ghana and beyond." }
+          - { label: "Primary Button Text", name: "btn_primary", widget: "string", default: "Get Involved Today" }
+          - { label: "Secondary Button Text", name: "btn_secondary", widget: "string", default: "Watch Our Story" }
+          - { label: "Hero Image", name: "hero_image", widget: "image", required: false }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+
+  - name: "about"
+    label: "ℹ️ About Section"
+    files:
+      - label: "About Content"
+        name: "about"
+        file: "_data/about.json"
+        fields:
+          - { label: "Badge Text", name: "badge", widget: "string", default: "Who We Are" }
+          - { label: "Heading", name: "heading", widget: "string", default: "A Community-Driven Foundation" }
+          - { label: "Paragraph 1", name: "para1", widget: "text" }
+          - { label: "Paragraph 2", name: "para2", widget: "text" }
+          - { label: "About Image", name: "image", widget: "image", required: false }
+          - label: "Feature Points"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "desc", widget: "string" }
+
+  - name: "programs"
+    label: "📋 Programs"
+    folder: "_data/programs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Program Title", name: "title", widget: "string" }
+      - { label: "Icon/Emoji", name: "icon", widget: "string", default: "🌟" }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Program Image", name: "image", widget: "image", required: false }
+      - { label: "Order", name: "order", widget: "number", default: 1 }
+
+  - name: "team"
+    label: "👥 Team Members"
+    folder: "_data/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Full Name", name: "name", widget: "string" }
+      - { label: "Role/Title", name: "role", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Bio", name: "bio", widget: "text", required: false }
+      - { label: "Order", name: "order", widget: "number", default: 1 }
+
+  - name: "news"
+    label: "📰 News & Blog"
+    folder: "_data/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["News", "Blog", "Events", "Impact Stories"] }
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Full Content", name: "body", widget: "markdown" }
+
+  - name: "impact"
+    label: "📊 Impact Numbers"
+    files:
+      - label: "Impact Stats"
+        name: "impact"
+        file: "_data/impact.json"
+        fields:
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Number (digits only)", name: "number", widget: "number" }
+              - { label: "Suffix (e.g. +, %)", name: "suffix", widget: "string", required: false }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Icon/Emoji", name: "icon", widget: "string" }
+
+  - name: "donate"
+    label: "💝 Donate Section"
+    files:
+      - label: "Donate Content"
+        name: "donate"
+        file: "_data/donate.json"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Donation Amounts", name: "amounts", widget: "list", field: { label: "Amount (GHS)", name: "amount", widget: "number" } }
+          - { label: "Mobile Money Number", name: "momo_number", widget: "string", required: false }
+          - { label: "Bank Name", name: "bank_name", widget: "string", required: false }
+          - { label: "Bank Account Number", name: "bank_account", widget: "string", required: false }
